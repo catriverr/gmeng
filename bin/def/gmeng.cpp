@@ -46,23 +46,24 @@ namespace Gmeng {
 			};
 			return final;
 		};
-		inline void SetPlayer(int entityId, Objects::G_Player player, int x, int y) {
+		inline void SetPlayer(int entityId, Objects::G_Player player, int x, int y = -1) {
 			for (int i = 0; i < this->entitytotal; i++) {
 				Objects::G_Entity entity = this->entitymap[i];
 				if (entity.entityId == entityId) throw std::invalid_argument("entity already exists: cannot create player");
 			};
-			if (x*y > _w*_h) throw std::invalid_argument("entity cannot be placed in the provided x-y coordinates");
-			if (this->display_map.unitmap[(y*_w)+x].collidable == false) throw std::invalid_argument("entity cannot be placed in the provided x-y coordinates: the unit at the location is not collidable");
+			int goto_loc = (y != -1) ? ((y*_w)+x) : (x); 
+			if (goto_loc > _w*_h) throw std::invalid_argument("entity cannot be placed in the provided x-y coordinates");
+			if (this->display_map.unitmap[goto_loc].collidable == false) throw std::invalid_argument("entity cannot be placed in the provided x-y coordinates: the unit at the location is not collidable");
 			this->entitymap[entityId] = player;
-			int pos = (y*_w)+x;
+			int pos = goto_loc;
 			this->playerunit = this->display_map.unitmap[pos];
-			this->display_map.unitmap[(y*_w)+x] = Gmeng::Unit{
+			this->display_map.unitmap[goto_loc] = Gmeng::Unit{
 				.color=player.colorId,.collidable=false,.is_player=true,.is_entity=false,
 				.player=player
 			};
 			this->player = player;
-			this->player.coords.x = x;
-			this->player.coords.y = y;
+			this->player.coords.x = x; //FIX
+			this->player.coords.y = y; //FIX
 			this->entitytotal++;
 		};
 		inline void AddEntity(int entityId, Objects::G_Entity entity) {

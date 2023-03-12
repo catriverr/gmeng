@@ -66,6 +66,9 @@
         "list": "cpp",
         "map": "cpp",
         "regex": "cpp",
-        "future": "cpp"
+        "future": "cpp",
+        "fstream": "cpp",
+        "iomanip": "cpp",
+        "stack": "cpp"
     }
 }

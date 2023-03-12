@@ -51,4 +51,5 @@ inline Gmeng::Unit g_spike(int color = 0, int bgcolor = 0, bool big = false) {
 };
 #define __GMENG_INIT__ true
 #include "def/gmeng.cpp"
+#include "utils/envs/map.hpp"
 #endif
