@@ -1,4 +1,3 @@
 # gmeng
 The go-to console game engine.
-
-# This project is being actively developed. New features & API changes may occur during this time.
+# THIS REPO IS NO LONGER MAINTAINED, IT HAS BEEN SWITCHED TO: [gmeng-sdk](https://github.com/catriverr/gmeng-sdk)
